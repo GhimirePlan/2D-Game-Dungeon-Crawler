@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://tqgpyanq63jt"]
+
+[ext_resource type="Texture2D" uid="uid://hbl52m1it7q6" path="res://2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character_2.png" id="1_1wfyq"]
+
+[node name="Boss" type="Sprite2D"]
+texture = ExtResource("1_1wfyq")
+region_enabled = true
+region_rect = Rect2(34, 16, 12, 16)

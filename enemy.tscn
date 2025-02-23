@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw5y8huchv71e"]
+
+[ext_resource type="Texture2D" uid="uid://hbl52m1it7q6" path="res://2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character_2.png" id="1_0mika"]
+
+[node name="Enemy" type="Sprite2D"]
+texture = ExtResource("1_0mika")
+region_enabled = true
+region_rect = Rect2(17, 17, 12, 13)
