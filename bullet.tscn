@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://crhojqpi5epa1"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_hgulf"]
-[ext_resource type="Texture2D" uid="uid://ym53ggb0n684" path="res://icon.svg" id="1_ihi6w"]
+[ext_resource type="Texture2D" uid="uid://omxpb371adp1" path="res://pixil-frame-0(5).png" id="2_o8fsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htiyi"]
 size = Vector2(14, 14)
@@ -12,8 +12,8 @@ collision_mask = 3
 script = ExtResource("1_hgulf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.109375, 0.109375)
-texture = ExtResource("1_ihi6w")
+scale = Vector2(0.823529, 0.823529)
+texture = ExtResource("2_o8fsv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color(0.580392, 0, 0.113725, 1)

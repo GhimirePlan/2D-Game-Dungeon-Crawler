@@ -1,7 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctp8nnwbv00wq"]
+[gd_scene load_steps=6 format=3 uid="uid://ctp8nnwbv00wq"]
 
-[ext_resource type="PackedScene" uid="uid://cw5y8huchv71e" path="res://enemy.tscn" id="2_heaq6"]
-[ext_resource type="PackedScene" uid="uid://tqgpyanq63jt" path="res://boss.tscn" id="3_dd5b6"]
 [ext_resource type="PackedScene" uid="uid://78ldbdb0t2um" path="res://player.tscn" id="5_e8tqy"]
 [ext_resource type="Script" path="res://camera.gd" id="6_15l6r"]
 [ext_resource type="PackedScene" uid="uid://d1rmpttjjukv" path="res://health_bar.tscn" id="6_bb0gx"]
@@ -12,8 +10,6 @@
 
 [node name="Dungeon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_gkpq2")]
 player = NodePath("../CharacterBody2D")
-enemy_scenes = [ExtResource("2_heaq6")]
-boss_scene = ExtResource("3_dd5b6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.46, 2.46)

@@ -5,8 +5,19 @@ extends Panel
 var count = 0
 func _ready() -> void:
 	BuffManager.buffs_updated.connect(_on_buffs_updated)
+	BuffManager.ground_buffs_updated.connect(_on_ground_buffs_updated)
 	buff_label.visible = false
 	hide_timer.timeout.connect(_on_HideTimer_timeout)
+
+
+func _on_ground_buffs_updated(text, value, amount):
+	var msg: String = text
+	visible = true		
+	if msg != "":
+		buff_label.text = msg
+		buff_label.visible = true
+		hide_timer.start()
+	$AnimationPlayer.play('fade_in')
 
 func _on_buffs_updated() -> void:
 	count+=1

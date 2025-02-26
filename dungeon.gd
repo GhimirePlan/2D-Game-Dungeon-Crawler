@@ -12,7 +12,8 @@ const WALL_TILE_ID = 1
 
 var player_start_pos: Vector2 
 
-@export var enemy_scenes: Array  
+@export var enemy_scenes: Array
+@export var buff_scenes: Array  
 @export var boss_scene: PackedScene  
 
 var boss_room: Rect2i 
@@ -55,6 +56,7 @@ func generate_dungeon():
 			rooms.append(new_room)
 
 			spawn_enemies_in_room(new_room)
+			spawn_buffs_in_room(new_room)
 
 			if rooms.size() > 1:
 				create_corridor(rooms[-2].get_center(), new_room.get_center())
@@ -63,18 +65,12 @@ func generate_dungeon():
 		player_start_pos = rooms[0].get_center() * 16  
 
 	boss_room = get_farthest_room_from_player(rooms)
-	print()
-	print(player_start_pos)
-	print(boss_room.get_center())
 	for room in rooms:
 		print(Vector2(room.position).distance_to(player_start_pos))
 	
 	var i = 0
 	var dir = player_start_pos.direction_to(Vector2(boss_room.get_center()*16))
 	var new_boss_size = boss_room.size * 2
-	print()
-	print(player_start_pos)
-	print(boss_room.get_center() * 16)
 	while true:
 		var new_boss_pos = Vector2i(
 				boss_room.position.x + new_boss_size.x / 2 *sign(dir.x),
@@ -86,9 +82,6 @@ func generate_dungeon():
 			break
 		
 	rooms.append(boss_room)
-	print()
-	print(player_start_pos)
-	print(boss_room.get_center() * 15)
 	for room in rooms:
 		carve_room(room)
 	var closest_room = get_closest_room_from_room(boss_room, rooms)
@@ -136,11 +129,22 @@ func spawn_enemies_in_room(room: Rect2i):
 		)
 		enemy.position = spawn_pos * 16  
 		add_child(enemy)
-
+func spawn_buffs_in_room(room: Rect2i):
+	var buff_scene = buff_scenes[randi_range(0, buff_scenes.size() - 1)]
+	room = room.grow(-1)
+	var buff = buff_scene.instantiate()
+	var spawn_pos = Vector2(
+		randi_range(room.position.x, room.end.x),
+		randi_range(room.position.y, room.end.y)
+	)
+	buff.position = spawn_pos * 16  
+	add_child(buff)
 func spawn_boss_in_room(room: Rect2i):
 	var boss = boss_scene.instantiate()
 	var boss_pos = room.get_center() * 16 
 	boss.position = boss_pos
+	boss.sizex = room.size.x
+	boss.sizey = room.size.y
 	add_child(boss)
 
 func is_room_valid(room: Rect2i, existing_rooms: Array) -> bool:

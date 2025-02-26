@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw5y8huchv71e"]
+[gd_scene load_steps=8 format=3 uid="uid://cw5y8huchv71e"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_83cve"]
 [ext_resource type="PackedScene" uid="uid://bm1cgqihsvpg" path="res://health_drop.tscn" id="2_qgagq"]
 [ext_resource type="Texture2D" uid="uid://dl8baeambhw6l" path="res://2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png" id="2_yahmo"]
+[ext_resource type="AudioStream" uid="uid://wpnas2tcrw8n" path="res://synth.wav" id="4_05wuj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiuf3"]
 size = Vector2(14, 14)
@@ -41,3 +42,6 @@ wait_time = 13.543
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_h2nt4")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_05wuj")

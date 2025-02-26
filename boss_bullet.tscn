@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dybxuygy1tlof"]
+
+[ext_resource type="Script" path="res://boss_bullet.gd" id="1_ehd2r"]
+[ext_resource type="Texture2D" uid="uid://bdl0ngex52sw6" path="res://pixil-frame-0(6).png" id="2_gvtwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htiyi"]
+size = Vector2(14, 14)
+
+[node name="Node2D" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ehd2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.823529, 0.823529)
+texture = ExtResource("2_gvtwo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(0.580392, 0, 0.113725, 1)
+self_modulate = Color(0.8, 0.309804, 0.243137, 1)
+shape = SubResource("RectangleShape2D_htiyi")

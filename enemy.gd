@@ -171,4 +171,6 @@ func die() -> void:
 		health_drop_node.global_position = global_position
 		get_tree().current_scene.add_child(health_drop_node)
 	BuffManager.add_enemy_kill()
+	$DeathSound.play()
+	await get_tree().create_timer(0.2).timeout
 	queue_free() 
