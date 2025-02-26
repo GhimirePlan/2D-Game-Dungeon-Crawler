@@ -126,8 +126,8 @@ func get_closest_room_from_room(room, rooms: Array) -> Rect2i:
 	return farthest_room
 func spawn_enemies_in_room(room: Rect2i):
 	var enemy_scene = enemy_scenes[randi_range(0, enemy_scenes.size() - 1)]
-	var num_enemies = randi_range(1, 3)  
-
+	var num_enemies = randi_range(3, 8)  
+	room = room.grow(-1)
 	for i in range(num_enemies):
 		var enemy = enemy_scene.instantiate()
 		var spawn_pos = Vector2(

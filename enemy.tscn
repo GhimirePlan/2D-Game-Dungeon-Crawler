@@ -1,8 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw5y8huchv71e"]
+[gd_scene load_steps=7 format=3 uid="uid://cw5y8huchv71e"]
 
-[ext_resource type="Texture2D" uid="uid://hbl52m1it7q6" path="res://2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character_2.png" id="1_0mika"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_83cve"]
+[ext_resource type="PackedScene" uid="uid://bm1cgqihsvpg" path="res://health_drop.tscn" id="2_qgagq"]
+[ext_resource type="Texture2D" uid="uid://dl8baeambhw6l" path="res://2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png" id="2_yahmo"]
 
-[node name="Enemy" type="Sprite2D"]
-texture = ExtResource("1_0mika")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eiuf3"]
+size = Vector2(14, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_56nwl"]
+radius = 25.2982
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2nt4"]
+radius = 15.2971
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_83cve")
+health_drop = ExtResource("2_qgagq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eiuf3")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_56nwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yahmo")
 region_enabled = true
-region_rect = Rect2(17, 17, 12, 13)
+region_rect = Rect2(17, 49, 12, 13)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="PatrolTimer" type="Timer" parent="."]
+wait_time = 13.543
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_h2nt4")

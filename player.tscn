@@ -1,0 +1,184 @@
+[gd_scene load_steps=19 format=3 uid="uid://78ldbdb0t2um"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_lv5f3"]
+[ext_resource type="Texture2D" uid="uid://ddu3ohgg87r5s" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_1.png" id="2_kn1lh"]
+[ext_resource type="PackedScene" uid="uid://c5uo5scf5vvjs" path="res://laser.tscn" id="2_mifvu"]
+[ext_resource type="PackedScene" uid="uid://crhojqpi5epa1" path="res://bullet.tscn" id="3_8wmul"]
+[ext_resource type="Texture2D" uid="uid://cw268y0nwsrb" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_2.png" id="3_b57b5"]
+[ext_resource type="Texture2D" uid="uid://dhn0vc2pfotck" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_3.png" id="4_784wn"]
+[ext_resource type="Texture2D" uid="uid://bsy7jyx38rg2s" path="res://2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_4.png" id="5_o6875"]
+[ext_resource type="Texture2D" uid="uid://dg1u100m4owcb" path="res://P_P_FREE_RPG_TILESET/decor.png" id="6_xx6ad"]
+[ext_resource type="AudioStream" uid="uid://bnfb2y5c7abfr" path="res://retro-hurt-2-236675.mp3" id="7_kxwqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoxis"]
+size = Vector2(15, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq42j"]
+atlas = ExtResource("2_kn1lh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf7n4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kn1lh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b57b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_784wn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o6875")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq42j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b57b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_784wn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o6875")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kn1lh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b57b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_784wn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o6875")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ut1dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_402so"]
+resource_name = "attack_l"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.907571, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_do561"]
+resource_name = "attack_r"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.05941, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jhxue"]
+resource_name = "hurt_flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.694118, 0.0431373, 0.243137, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sp8cs"]
+_data = {
+"RESET": SubResource("Animation_ut1dv"),
+"attack_l": SubResource("Animation_402so"),
+"attack_r": SubResource("Animation_do561"),
+"hurt_flash": SubResource("Animation_jhxue")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbllf"]
+size = Vector2(2, 12)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_lv5f3")
+LaserBeamScene = ExtResource("2_mifvu")
+BulletScene = ExtResource("3_8wmul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_eoxis")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.847059, 0.521569, 0.621569, 1)
+sprite_frames = SubResource("SpriteFrames_wf7n4")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sp8cs")
+}
+
+[node name="Weapon" type="Area2D" parent="."]
+scale = Vector2(0.357143, 0.666667)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
+position = Vector2(16.8, 1.5)
+scale = Vector2(2.8, 1.5)
+shape = SubResource("RectangleShape2D_fbllf")
+
+[node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
+texture = ExtResource("6_xx6ad")
+offset = Vector2(16.8, 1.5)
+region_enabled = true
+region_rect = Rect2(81, 30, 7, 18)
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_kxwqn")
+volume_db = 2.971
