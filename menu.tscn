@@ -1,0 +1,124 @@
+[gd_scene load_steps=14 format=3 uid="uid://d2wkjtkf23252"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_lujqn"]
+[ext_resource type="Texture2D" uid="uid://di2ljj2d7ffe0" path="res://plangames.png" id="2_1rlgg"]
+[ext_resource type="Texture2D" uid="uid://bcl5ymp1vsgbb" path="res://bg.png" id="2_e40ci"]
+[ext_resource type="FontFile" uid="uid://dk5hih4hd6gfo" path="res://MedodicaRegular.otf" id="2_w2wj5"]
+
+[sub_resource type="Gradient" id="Gradient_ywxsu"]
+offsets = PackedFloat32Array(0.0909091, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2fgon"]
+gradient = SubResource("Gradient_ywxsu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gowdq"]
+texture = SubResource("GradientTexture1D_2fgon")
+
+[sub_resource type="Theme" id="Theme_i4by6"]
+Panel/styles/panel = SubResource("StyleBoxTexture_gowdq")
+
+[sub_resource type="Theme" id="Theme_lois2"]
+default_font = ExtResource("2_w2wj5")
+default_font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_itoh3"]
+font = ExtResource("2_w2wj5")
+font_size = 50
+font_color = Color(0.823529, 0, 0.168627, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xso5d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hgdvw"]
+texture = SubResource("CompressedTexture2D_xso5d")
+
+[sub_resource type="Theme" id="Theme_7rg1f"]
+default_font = ExtResource("2_w2wj5")
+Label/styles/normal = SubResource("StyleBoxTexture_hgdvw")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 68.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lujqn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -3.0
+offset_right = 1210.0
+offset_bottom = 661.0
+theme = SubResource("Theme_i4by6")
+
+[node name="Bg" type="Sprite2D" parent="Panel"]
+position = Vector2(1406, 462)
+scale = Vector2(2.75447, 2.30753)
+texture = ExtResource("2_e40ci")
+
+[node name="Plangames" type="Sprite2D" parent="Panel"]
+position = Vector2(153, 880)
+scale = Vector2(0.0689634, 0.100987)
+texture = ExtResource("2_1rlgg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -132.5
+offset_right = 169.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lois2")
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Dungeon Crawler"
+label_settings = SubResource("LabelSettings_itoh3")
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+text = "Start Game"
+
+[node name="Help" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Help"
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.252
+anchor_bottom = 0.212
+offset_left = 451.0
+offset_top = 420.0
+offset_right = 403.696
+offset_bottom = 439.624
+
+[node name="Label" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Press W -->  Move forward / Up
+Press A --> Move left
+Press S --> Move backward / Down
+Press D --> Move right
+Press Mouse right button to Fire"
+
+[node name="Label2" type="TextEdit" parent="BoxContainer/Label"]
+texture_filter = 2
+layout_mode = 0
+offset_left = 39.0
+offset_top = -37.0
+offset_right = 204.0
+offset_bottom = -1.0
+theme = SubResource("Theme_7rg1f")
+text = "Mission : Kill Big Enemy"
