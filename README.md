@@ -1,6 +1,6 @@
-# **Web-Based Game Platform**
+# **2D-Game-Dungeon-Crawler**
 
-A responsive, browser-compatible platform for playing games, initially developed using C++ and Raylib in Semester 2 for OOP project. Expanded in Semester 3 for Computer Graphics project with a new 2D game built using Godot 4.3, offering a fun experience on desktop, mobile, and web.
+A 2D dungeon crawler game built with Godot 4.3 and added to our web-based game platform in Semester 3. Explore dungeons, fight enemies, and collect treasures—all playable in your browser or on mobile devices.
 
 ---
 
